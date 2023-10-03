@@ -2,16 +2,16 @@
 
 namespace App\Tests;
 
-use App\MinimalExpenseSplit;
+use App\MatrixBasedExpenseSplit;
 use PHPUnit\Framework\TestCase;
 
-class MinimalExpenseSplitTest extends TestCase
+class MatrixBasedExpenseSplitTest extends TestCase
 {
-    private MinimalExpenseSplit $expenseSplit;
+    private MatrixBasedExpenseSplit $expenseSplit;
 
     protected function setUp(): void
     {
-        $this->expenseSplit = new MinimalExpenseSplit();
+        $this->expenseSplit = new MatrixBasedExpenseSplit();
     }
 
     public function testSplitWithNoUsers(): void

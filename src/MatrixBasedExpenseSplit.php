@@ -4,11 +4,15 @@ namespace App;
 
 use InvalidArgumentException;
 
-class MinimalExpenseSplit implements IExpenseSplit
+/**
+ * Implementation that splits the expense of each user equally among all users and stores
+ * the amount owed by user X to user Y in a matrix[X][Y].
+ * This solution is not correct because it does not guarantee a minimal number of transactions.
+ */
+class MatrixBasedExpenseSplit implements IExpenseSplit
 {
     private array $expensesByUser = [];
     private array $users = [];
-    private float $totalAmount = 0;
 
     public function addUser(string $name): void
     {
@@ -29,7 +33,6 @@ class MinimalExpenseSplit implements IExpenseSplit
             'amount' => $amount,
             'comment' => $comment,
         ];
-        $this->totalAmount += $amount;
     }
 
     /**
