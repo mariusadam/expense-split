@@ -2,16 +2,16 @@
 
 namespace App\Tests;
 
-use App\MatrixBasedExpenseSplit;
+use App\LeftRightExpenseSplit;
 use PHPUnit\Framework\TestCase;
 
-class MatrixBasedExpenseSplitTest extends TestCase
+class LeftRightExpenseSplitTest extends TestCase
 {
-    private MatrixBasedExpenseSplit $expenseSplit;
+    private LeftRightExpenseSplit $expenseSplit;
 
     protected function setUp(): void
     {
-        $this->expenseSplit = new MatrixBasedExpenseSplit();
+        $this->expenseSplit = new LeftRightExpenseSplit();
     }
 
     public function testSplitWithNoUsers(): void
@@ -98,22 +98,20 @@ class MatrixBasedExpenseSplitTest extends TestCase
 
         $expected = [
             'john' => [
-                'jane' => 2.5,
-                'mike' => 10.0,
-                'greg' => 2.5,
+                'mike' => 15.0,
             ],
             'jane' => [
-                'mike' => 7.5,
+                'mike' => 5.0,
             ],
             'mike' => [],
             'greg' => [
-                'mike' => 7.5,
+                'mike' => 5.0,
             ],
         ];
         $this->assertEquals($expected, $this->expenseSplit->split());
     }
 
-    public function testSplitThreeUsersTwoTransactions(): void
+    public function testSplitThreeUsersTwoInitialExpenses(): void
     {
         $this->expenseSplit->addUser('john');
         $this->expenseSplit->addUser('jane');
@@ -123,11 +121,9 @@ class MatrixBasedExpenseSplitTest extends TestCase
 
         $expected = [
             'john' => [
-                'jane' => 1.0,
-                'mike' => 2.0,
+                'mike' => 3.0,
             ],
             'jane' => [
-                'mike' => 1.0,
             ],
             'mike' => [
             ],
@@ -148,11 +144,9 @@ class MatrixBasedExpenseSplitTest extends TestCase
             'mike' => [
             ],
             'john' => [
-                'mike' => 1.3333333333333335,
-                'jane' => 0.6666666666666667,
+                'mike' => 2.0,
             ],
             'jane' => [
-                'mike' => 0.6666666666666667
             ],
         ];
         $this->assertSame($expected, $this->expenseSplit->split());
@@ -172,23 +166,18 @@ class MatrixBasedExpenseSplitTest extends TestCase
 
         $expected = [
             'john' => [
-                'mike' => 0.19999999999999996,
             ],
             'jane' => [
-                'john' => 0.8,
-                'mike' => 1.0,
-            ],
-            'greg' => [
-                'john' => 0.8,
-                'mike' => 1.0,
-            ],
-            'abcd' => [
-                'john' => 1.0,
-                'jane' => 0.2,
-                'mike' => 1.2,
-                'greg' => 0.2,
+                'mike' => 0.7999999999999998,
+                'john' => 0.8000000000000003,
             ],
             'mike' => [],
+            'greg' => [
+                'john' => 1.5999999999999992,
+            ],
+            'abcd' => [
+                'mike' => 2.6,
+            ],
         ];
         $this->assertSame($expected, $this->expenseSplit->split());
     }
