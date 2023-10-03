@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Tests;
+namespace ExpenseSplit\Tests;
 
-use App\MatrixBasedExpenseSplit;
+use ExpenseSplit\MatrixBasedExpenseSplit;
 use PHPUnit\Framework\TestCase;
 
 class MatrixBasedExpenseSplitTest extends TestCase

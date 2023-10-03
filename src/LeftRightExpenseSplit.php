@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace ExpenseSplit;
 
 use InvalidArgumentException;
 
@@ -10,7 +10,8 @@ use InvalidArgumentException;
  */
 class LeftRightExpenseSplit implements IExpenseSplit
 {
-    const IGNORABLE_DIFF = 0.0000001;
+    private const IGNORABLE_DIFF = 0.0000001;
+
     private array $expensesByUser = [];
     private array $users = [];
     private float $totalAmount = 0;

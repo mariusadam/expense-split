@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Tests;
+namespace ExpenseSplit\Tests;
 
-use App\LeftRightExpenseSplit;
+use ExpenseSplit\LeftRightExpenseSplit;
 use PHPUnit\Framework\TestCase;
 
 class LeftRightExpenseSplitTest extends TestCase
